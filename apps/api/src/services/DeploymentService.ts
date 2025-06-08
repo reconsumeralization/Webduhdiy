@@ -342,8 +342,14 @@ export class DeploymentService extends EventEmitter {
       'build',
     );
 
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       const [command, ...args] = buildCommand.split(' ');
+      
+      if (!command) {
+        reject(new Error('Invalid build command'));
+        return;
+      }
+      
       const buildProcess = spawn(command, args, {
         cwd: workspaceDir,
         stdio: ['ignore', 'pipe', 'pipe'],
@@ -357,15 +363,15 @@ export class DeploymentService extends EventEmitter {
 
       this.buildProcesses.set(deploymentId, buildProcess);
 
-      buildProcess.stdout?.on('data', (data) => {
+      buildProcess.stdout?.on('data', (data: Buffer) => {
         this.addLog(deploymentId, 'info', data.toString().trim(), 'build');
       });
 
-      buildProcess.stderr?.on('data', (data) => {
+      buildProcess.stderr?.on('data', (data: Buffer) => {
         this.addLog(deploymentId, 'warn', data.toString().trim(), 'build');
       });
 
-      buildProcess.on('close', (code) => {
+      buildProcess.on('close', (code: number | null) => {
         this.buildProcesses.delete(deploymentId);
         if (code === 0) {
           this.addLog(

@@ -22,8 +22,7 @@
     "build:tailwind": "turbo run build:tailwind",
     "build:bolt": "cd apps/bolt-diy && npm run build",
     "format": "prettier --write \"**/*.{ts,tsx,md,js,json}\"",
-    "postinstall": "npm run-script-if-present -s postinstall",
-    "run-script-if-present": "run-script-if-present"
+    "postinstall": "echo 'Postinstall completed'"
   },
   "keywords": [
     "deployment",

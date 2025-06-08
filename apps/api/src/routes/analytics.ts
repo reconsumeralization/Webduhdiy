@@ -1,8 +1,44 @@
-const express = require('express');
+import express, { Request, Response } from 'express';
 const router = express.Router();
 
+// Interface definitions
+interface AnalyticsOverview {
+  totalProjects: number;
+  totalDeployments: number;
+  successfulDeployments: number;
+  activeProjects: number;
+  totalTraffic: number;
+  avgDeploymentTime: number; // seconds
+}
+
+interface DeploymentAnalytics {
+  today: number;
+  thisWeek: number;
+  thisMonth: number;
+  trend: string;
+}
+
+interface Performance {
+  avgResponseTime: number; // ms
+  uptime: number;
+  errorRate: number;
+}
+
+interface UsageData {
+  date: string;
+  deployments: number;
+  traffic: number;
+}
+
+interface MockAnalytics {
+  overview: AnalyticsOverview;
+  deployments: DeploymentAnalytics;
+  performance: Performance;
+  usage: UsageData[];
+}
+
 // Mock analytics data
-const mockAnalytics = {
+const mockAnalytics: MockAnalytics = {
   overview: {
     totalProjects: 12,
     totalDeployments: 45,
@@ -34,16 +70,17 @@ const mockAnalytics = {
 };
 
 // GET /api/analytics/overview
-router.get('/overview', async (req, res) => {
+router.get('/overview', async (req: Request, res: Response) => {
   try {
     res.json(mockAnalytics.overview);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ error: errorMessage });
   }
 });
 
 // GET /api/analytics/deployments
-router.get('/deployments', async (req, res) => {
+router.get('/deployments', async (req: Request, res: Response) => {
   try {
     const { period = '7d' } = req.query;
 
@@ -57,12 +94,13 @@ router.get('/deployments', async (req, res) => {
       })),
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ error: errorMessage });
   }
 });
 
 // GET /api/analytics/traffic
-router.get('/traffic', async (req, res) => {
+router.get('/traffic', async (req: Request, res: Response) => {
   try {
     const { period = '7d' } = req.query;
 
@@ -75,21 +113,23 @@ router.get('/traffic', async (req, res) => {
       })),
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ error: errorMessage });
   }
 });
 
 // GET /api/analytics/performance
-router.get('/performance', async (req, res) => {
+router.get('/performance', async (req: Request, res: Response) => {
   try {
     res.json(mockAnalytics.performance);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ error: errorMessage });
   }
 });
 
 // GET /api/analytics/projects/:id
-router.get('/projects/:id', async (req, res) => {
+router.get('/projects/:id', async (req: Request, res: Response) => {
   try {
     const projectId = req.params.id;
 
@@ -110,8 +150,9 @@ router.get('/projects/:id', async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    res.status(500).json({ error: errorMessage });
   }
 });
 
-module.exports = router;
+export default router; 

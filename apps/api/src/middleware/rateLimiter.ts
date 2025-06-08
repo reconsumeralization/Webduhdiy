@@ -1,7 +1,8 @@
-const rateLimit = require('express-rate-limit');
+import { Request, Response, NextFunction } from 'express';
+import rateLimit from 'express-rate-limit';
 
 // Create different rate limiters for different endpoints
-const createRateLimiter = (windowMs, max, message) => {
+const createRateLimiter = (windowMs: number, max: number, message: string) => {
   return rateLimit({
     windowMs,
     max,
@@ -13,11 +14,11 @@ const createRateLimiter = (windowMs, max, message) => {
     standardHeaders: true,
     legacyHeaders: false,
     // Use IP address for rate limiting
-    keyGenerator: (req) => {
-      return req.ip || req.connection.remoteAddress;
+    keyGenerator: (req: Request) => {
+      return req.ip || (req.connection as any)?.remoteAddress || '';
     },
     // Skip rate limiting for certain conditions
-    skip: (req) => {
+    skip: (req: Request) => {
       // Skip rate limiting in test environment
       if (process.env.NODE_ENV === 'test') {
         return true;
@@ -55,7 +56,7 @@ const deploymentLimiter = createRateLimiter(
 );
 
 // Export the appropriate limiter based on the route
-const rateLimiterMiddleware = (req, res, next) => {
+const rateLimiterMiddleware = (req: Request, res: Response, next: NextFunction) => {
   // Apply stricter limits to authentication routes
   if (req.path.startsWith('/api/auth')) {
     return authLimiter(req, res, next);
@@ -70,4 +71,5 @@ const rateLimiterMiddleware = (req, res, next) => {
   return generalLimiter(req, res, next);
 };
 
-module.exports = rateLimiterMiddleware;
+export { rateLimiterMiddleware as rateLimiter };
+export default rateLimiterMiddleware; 

@@ -1,13 +1,31 @@
-const express = require('express');
-const crypto = require('crypto');
-const { body, param, query, validationResult } = require('express-validator');
+import express, { Request, Response, NextFunction } from 'express';
+import crypto from 'crypto';
+import { body, param, query, validationResult } from 'express-validator';
+import { Pool } from 'pg';
+
 const router = express.Router();
 
 // Simple encryption functions (in production, use a proper encryption service)
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY || crypto.randomBytes(32);
 const IV_LENGTH = 16;
 
-function encrypt(text) {
+interface AuthenticatedRequest extends Request {
+  user?: {
+    id: string;
+    email: string;
+    name: string;
+  };
+  projectAccess?: {
+    projectId: string;
+    organizationId: string;
+    userRole: string;
+  };
+}
+
+// Type assertion helper for app.locals
+const getServices = (req: Request) => (req.app.locals as any).services as { db: Pool };
+
+function encrypt(text: string): string | null {
   if (!text) return null;
   const iv = crypto.randomBytes(IV_LENGTH);
   const cipher = crypto.createCipher('aes-256-cbc', ENCRYPTION_KEY);
@@ -16,11 +34,11 @@ function encrypt(text) {
   return iv.toString('hex') + ':' + encrypted;
 }
 
-function decrypt(encryptedText) {
+function decrypt(encryptedText: string): string | null {
   if (!encryptedText) return null;
   try {
     const textParts = encryptedText.split(':');
-    const iv = Buffer.from(textParts.shift(), 'hex');
+    const iv = Buffer.from(textParts.shift()!, 'hex');
     const encryptedData = textParts.join(':');
     const decipher = crypto.createDecipher('aes-256-cbc', ENCRYPTION_KEY);
     let decrypted = decipher.update(encryptedData, 'hex', 'utf8');
@@ -33,23 +51,32 @@ function decrypt(encryptedText) {
 }
 
 // Middleware for validation
-const validateRequest = (req, res, next) => {
+const validateRequest = (req: Request, res: Response, next: NextFunction): void => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({
+    res.status(400).json({
       success: false,
       errors: errors.array(),
     });
+    return;
   }
   next();
 };
 
 // Check project access middleware
-const checkProjectAccess = async (req, res, next) => {
+const checkProjectAccess = async (req: AuthenticatedRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { db } = req.app.locals.services;
-    const userId = req.user.id;
+    const { db } = getServices(req);
+    const userId = req.user!.id;
     const projectId = req.params.projectId;
+    
+    if (!projectId) {
+      res.status(400).json({
+        success: false,
+        message: 'Project ID is required',
+      });
+      return;
+    }
 
     const accessCheck = await db.query(
       `
@@ -69,18 +96,20 @@ const checkProjectAccess = async (req, res, next) => {
     );
 
     if (accessCheck.rows.length === 0) {
-      return res.status(404).json({
+      res.status(404).json({
         success: false,
         message: 'Project not found',
       });
+      return;
     }
 
     const userRole = accessCheck.rows[0].user_role;
     if (!userRole) {
-      return res.status(403).json({
+      res.status(403).json({
         success: false,
         message: 'Access denied',
       });
+      return;
     }
 
     req.projectAccess = {
@@ -110,14 +139,14 @@ router.get(
   ],
   validateRequest,
   checkProjectAccess,
-  async (req, res) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const { db } = req.app.locals.services;
-      const { projectId } = req.projectAccess;
+      const { db } = getServices(req);
+      const { projectId } = req.projectAccess!;
       const target = req.query.target || 'all';
 
       let whereClause = 'project_id = $1';
-      const queryParams = [projectId];
+      const queryParams: any[] = [projectId];
 
       if (target !== 'all') {
         whereClause += " AND (target = $2 OR target = 'all')";
@@ -167,19 +196,20 @@ router.post(
   ],
   validateRequest,
   checkProjectAccess,
-  async (req, res) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const { db } = req.app.locals.services;
-      const { projectId, userRole } = req.projectAccess;
-      const userId = req.user.id;
+      const { db } = getServices(req);
+      const { projectId, userRole } = req.projectAccess!;
+      const userId = req.user!.id;
       const { key, value, target } = req.body;
 
       // Check permissions
       if (userRole === 'viewer') {
-        return res.status(403).json({
+        res.status(403).json({
           success: false,
           message: 'Insufficient permissions to create environment variables',
         });
+        return;
       }
 
       // Check if variable already exists
@@ -192,10 +222,11 @@ router.post(
       );
 
       if (existingVar.rows.length > 0) {
-        return res.status(400).json({
+        res.status(400).json({
           success: false,
           message: 'Environment variable already exists for this target',
         });
+        return;
       }
 
       // Encrypt the value
@@ -236,19 +267,20 @@ router.put(
   ],
   validateRequest,
   checkProjectAccess,
-  async (req, res) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const { db } = req.app.locals.services;
-      const { projectId, userRole } = req.projectAccess;
+      const { db } = getServices(req);
+      const { projectId, userRole } = req.projectAccess!;
       const envId = req.params.envId;
       const { value } = req.body;
 
       // Check permissions
       if (userRole === 'viewer') {
-        return res.status(403).json({
+        res.status(403).json({
           success: false,
           message: 'Insufficient permissions to update environment variables',
         });
+        return;
       }
 
       // Check if variable exists and belongs to this project
@@ -261,18 +293,20 @@ router.put(
       );
 
       if (existingVar.rows.length === 0) {
-        return res.status(404).json({
+        res.status(404).json({
           success: false,
           message: 'Environment variable not found',
         });
+        return;
       }
 
       // Don't allow updating system variables
       if (existingVar.rows[0].is_system) {
-        return res.status(400).json({
+        res.status(400).json({
           success: false,
           message: 'Cannot update system environment variables',
         });
+        return;
       }
 
       // Encrypt the new value
@@ -310,18 +344,19 @@ router.delete(
   [param('projectId').isUUID(), param('envId').isUUID()],
   validateRequest,
   checkProjectAccess,
-  async (req, res) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const { db } = req.app.locals.services;
-      const { projectId, userRole } = req.projectAccess;
+      const { db } = getServices(req);
+      const { projectId, userRole } = req.projectAccess!;
       const envId = req.params.envId;
 
       // Check permissions
       if (userRole === 'viewer') {
-        return res.status(403).json({
+        res.status(403).json({
           success: false,
           message: 'Insufficient permissions to delete environment variables',
         });
+        return;
       }
 
       // Check if variable exists and belongs to this project
@@ -334,18 +369,20 @@ router.delete(
       );
 
       if (existingVar.rows.length === 0) {
-        return res.status(404).json({
+        res.status(404).json({
           success: false,
           message: 'Environment variable not found',
         });
+        return;
       }
 
       // Don't allow deleting system variables
       if (existingVar.rows[0].is_system) {
-        return res.status(400).json({
+        res.status(400).json({
           success: false,
           message: 'Cannot delete system environment variables',
         });
+        return;
       }
 
       await db.query(
@@ -370,104 +407,93 @@ router.delete(
   },
 );
 
-// GET /api/projects/:projectId/environment/:envId/value - Get decrypted value (admin only)
+// GET /api/projects/:projectId/environment/:envId - Get environment variable value
 router.get(
-  '/:projectId/environment/:envId/value',
+  '/:projectId/environment/:envId',
   [param('projectId').isUUID(), param('envId').isUUID()],
   validateRequest,
   checkProjectAccess,
-  async (req, res) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const { db } = req.app.locals.services;
-      const { projectId, userRole } = req.projectAccess;
+      const { db } = getServices(req);
+      const { projectId } = req.projectAccess!;
       const envId = req.params.envId;
-
-      // Only owners and admins can view encrypted values
-      if (!['owner', 'admin'].includes(userRole)) {
-        return res.status(403).json({
-          success: false,
-          message:
-            'Insufficient permissions to view environment variable values',
-        });
-      }
 
       const envVar = await db.query(
         `
-      SELECT key, value_encrypted, target
-      FROM environment_variables 
-      WHERE id = $1 AND project_id = $2
+      SELECT id, key, value_encrypted, target, is_system, created_at, updated_at,
+             u.name as created_by_name
+      FROM environment_variables ev
+      LEFT JOIN users u ON ev.created_by = u.id
+      WHERE ev.id = $1 AND ev.project_id = $2
     `,
         [envId, projectId],
       );
 
       if (envVar.rows.length === 0) {
-        return res.status(404).json({
+        res.status(404).json({
           success: false,
           message: 'Environment variable not found',
         });
+        return;
       }
 
-      const decryptedValue = decrypt(envVar.rows[0].value_encrypted);
+      const variable = envVar.rows[0];
+      const decryptedValue = decrypt(variable.value_encrypted);
 
       res.json({
         success: true,
         data: {
-          key: envVar.rows[0].key,
-          value: decryptedValue,
-          target: envVar.rows[0].target,
+          environment_variable: {
+            ...variable,
+            value: decryptedValue,
+            value_encrypted: undefined, // Don't send encrypted value
+          },
         },
       });
     } catch (error) {
-      console.error('Error fetching environment variable value:', error);
+      console.error('Error fetching environment variable:', error);
       res.status(500).json({
         success: false,
-        message: 'Failed to fetch environment variable value',
+        message: 'Failed to fetch environment variable',
       });
     }
   },
 );
 
-// POST /api/projects/:projectId/environment/bulk - Bulk import environment variables
+// POST /api/projects/:projectId/environment/bulk - Bulk create/update environment variables
 router.post(
   '/:projectId/environment/bulk',
   [
     param('projectId').isUUID(),
-    body('variables').isArray().withMessage('Variables must be an array'),
+    body('variables').isArray({ min: 1 }),
     body('variables.*.key')
       .isLength({ min: 1, max: 255 })
-      .matches(/^[A-Za-z_][A-Za-z0-9_]*$/),
+      .matches(/^[A-Za-z_][A-Za-z0-9_]*$/)
+      .withMessage('Key must be a valid environment variable name'),
     body('variables.*.value').isLength({ min: 0, max: 10000 }),
-    body('variables.*.target').isIn([
-      'production',
-      'preview',
-      'development',
-      'all',
-    ]),
-    body('overwrite').optional().isBoolean(),
+    body('variables.*.target').isIn(['production', 'preview', 'development', 'all']),
   ],
   validateRequest,
   checkProjectAccess,
-  async (req, res) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
     try {
-      const { db } = req.app.locals.services;
-      const { projectId, userRole } = req.projectAccess;
-      const userId = req.user.id;
-      const { variables, overwrite = false } = req.body;
+      const { db } = getServices(req);
+      const { projectId, userRole } = req.projectAccess!;
+      const userId = req.user!.id;
+      const { variables } = req.body;
 
       // Check permissions
       if (userRole === 'viewer') {
-        return res.status(403).json({
+        res.status(403).json({
           success: false,
           message: 'Insufficient permissions to create environment variables',
         });
+        return;
       }
 
-      const results = {
-        created: [],
-        updated: [],
-        skipped: [],
-        errors: [],
-      };
+      const results = [];
+      const errors = [];
 
       for (const variable of variables) {
         try {
@@ -483,57 +509,59 @@ router.post(
           );
 
           if (existingVar.rows.length > 0) {
-            if (overwrite) {
-              // Update existing variable
-              const encryptedValue = encrypt(value);
-              await db.query(
-                `
-              UPDATE environment_variables 
-              SET value_encrypted = $1, updated_at = NOW()
-              WHERE project_id = $2 AND key = $3 AND target = $4
-            `,
-                [encryptedValue, projectId, key, target],
-              );
-              results.updated.push({ key, target });
-            } else {
-              results.skipped.push({ key, target, reason: 'Already exists' });
-            }
+            // Update existing variable
+            const encryptedValue = encrypt(value);
+            const result = await db.query(
+              `
+            UPDATE environment_variables 
+            SET value_encrypted = $1, updated_at = NOW()
+            WHERE project_id = $2 AND key = $3 AND target = $4
+            RETURNING id, key, target, is_system, created_at, updated_at
+          `,
+              [encryptedValue, projectId, key, target],
+            );
+            results.push({ action: 'updated', variable: result.rows[0] });
           } else {
             // Create new variable
             const encryptedValue = encrypt(value);
-            await db.query(
+            const result = await db.query(
               `
             INSERT INTO environment_variables (project_id, key, value_encrypted, target, created_by)
             VALUES ($1, $2, $3, $4, $5)
+            RETURNING id, key, target, is_system, created_at, updated_at
           `,
               [projectId, key, encryptedValue, target, userId],
             );
-            results.created.push({ key, target });
+            results.push({ action: 'created', variable: result.rows[0] });
           }
         } catch (error) {
-          results.errors.push({
-            key: variable.key,
-            target: variable.target,
-            error: error.message,
+          errors.push({
+            variable: variable,
+            error: error instanceof Error ? error.message : 'Unknown error',
           });
         }
       }
 
-      res.json({
+      res.status(200).json({
         success: true,
         data: {
           results,
-          total_processed: variables.length,
+          errors,
+          summary: {
+            total: variables.length,
+            successful: results.length,
+            failed: errors.length,
+          },
         },
       });
     } catch (error) {
-      console.error('Error bulk importing environment variables:', error);
+      console.error('Error bulk creating/updating environment variables:', error);
       res.status(500).json({
         success: false,
-        message: 'Failed to bulk import environment variables',
+        message: 'Failed to bulk create/update environment variables',
       });
     }
   },
 );
 
-module.exports = router;
+export default router; 

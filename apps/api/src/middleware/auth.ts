@@ -1,19 +1,31 @@
-const jwt = require('jsonwebtoken');
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 
-const authMiddleware = (req, res, next) => {
+export interface AuthenticatedRequest extends Request {
+  user?: {
+    id: string;
+    email: string;
+    name: string;
+    username?: string;
+  };
+}
+
+const authMiddleware = (req: AuthenticatedRequest, res: Response, next: NextFunction): void => {
   try {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-      return res
+      res
         .status(401)
         .json({ error: 'No authorization header provided' });
+      return;
     }
 
     const token = authHeader.split(' ')[1]; // Bearer <token>
 
     if (!token) {
-      return res.status(401).json({ error: 'No token provided' });
+      res.status(401).json({ error: 'No token provided' });
+      return;
     }
 
     // For development, accept the dummy token
@@ -30,15 +42,17 @@ const authMiddleware = (req, res, next) => {
     const decoded = jwt.verify(
       token,
       process.env.JWT_SECRET || 'your-super-secret-jwt-key',
-    );
+    ) as any;
     req.user = decoded;
     next();
-  } catch (error) {
+  } catch (error: any) {
     if (error.name === 'JsonWebTokenError') {
-      return res.status(401).json({ error: 'Invalid token' });
+      res.status(401).json({ error: 'Invalid token' });
+      return;
     }
     if (error.name === 'TokenExpiredError') {
-      return res.status(401).json({ error: 'Token expired' });
+      res.status(401).json({ error: 'Token expired' });
+      return;
     }
 
     console.error('Auth middleware error:', error);
@@ -46,4 +60,4 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+export default authMiddleware; 
