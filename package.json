@@ -1,0 +1,72 @@
+{
+  "name": "webduh",
+  "version": "1.0.0",
+  "description": "The Developer-First Deployment Platform - A Vercel alternative that actually listens to developers",
+  "main": "index.js",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "typecheck": "turbo run typecheck",
+    "deploy": "turbo run deploy",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "setup": "npm install && npm run build",
+    "build:tailwind": "turbo run build:tailwind",
+    "build:bolt": "cd apps/bolt-diy && npm run build",
+    "format": "prettier --write \"**/*.{ts,tsx,md,js,json}\"",
+    "postinstall": "npm run-script-if-present -s postinstall",
+    "run-script-if-present": "run-script-if-present"
+  },
+  "keywords": [
+    "deployment",
+    "hosting",
+    "vercel-alternative",
+    "serverless",
+    "edge-computing",
+    "developer-tools",
+    "ci-cd",
+    "jamstack"
+  ],
+  "author": "webduh Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webduh/webduh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webduh/webduh/issues"
+  },
+  "homepage": "https://webduh.com",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.20.7",
+    "@types/dom-speech-recognition": "^0.0.6",
+    "@types/node": "^20.10.0",
+    "@types/readdir-glob": "^1.1.5",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.0",
+    "prettier": "^3.1.1",
+    "turbo": "^1.13.4",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}

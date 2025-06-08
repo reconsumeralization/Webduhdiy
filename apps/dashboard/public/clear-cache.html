@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Clear Browser Cache - webduh Docs</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f8fafc;
+      }
+      .card {
+        background: white;
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .success {
+        color: #059669;
+      }
+      .warning {
+        color: #d97706;
+      }
+      button {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 8px;
+      }
+      button:hover {
+        background: #2563eb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>🧹 Clear Browser Cache</h1>
+      <p>
+        If you're experiencing asset loading issues with the webduh
+        documentation:
+      </p>
+
+      <h3>Chrome/Edge:</h3>
+      <ol>
+        <li>
+          Press <kbd>Ctrl+Shift+Delete</kbd> (Windows) or
+          <kbd>Cmd+Shift+Delete</kbd> (Mac)
+        </li>
+        <li>Select "Cached images and files"</li>
+        <li>Click "Clear data"</li>
+      </ol>
+
+      <h3>Or use these buttons:</h3>
+      <button onclick="hardRefresh()">🔄 Hard Refresh</button>
+      <button onclick="clearCache()">🧹 Clear Cache</button>
+      <button onclick="goToDocs()">📚 Go to Docs</button>
+
+      <div id="status"></div>
+
+      <h3 class="success">✅ Issues Fixed:</h3>
+      <ul>
+        <li>Next.js cache cleared</li>
+        <li>TypeScript errors resolved</li>
+        <li>Port configuration updated</li>
+        <li>Asset loading optimized</li>
+      </ul>
+
+      <p class="warning">
+        <strong>Note:</strong> The documentation is now available at
+        <a href="http://localhost:3001/docs">http://localhost:3001/docs</a>
+      </p>
+    </div>
+
+    <script>
+      function hardRefresh() {
+        window.location.reload(true);
+      }
+
+      function clearCache() {
+        if ('caches' in window) {
+          caches.keys().then((names) => {
+            names.forEach((name) => caches.delete(name));
+          });
+        }
+        localStorage.clear();
+        sessionStorage.clear();
+        document.getElementById('status').innerHTML =
+          '<p class="success">✅ Cache cleared!</p>';
+      }
+
+      function goToDocs() {
+        window.location.href = 'http://localhost:3001/docs';
+      }
+
+      // Auto-redirect after 5 seconds
+      setTimeout(() => {
+        document.getElementById('status').innerHTML =
+          '<p>Redirecting to docs in 3 seconds...</p>';
+        setTimeout(() => goToDocs(), 3000);
+      }, 2000);
+    </script>
+  </body>
+</html>

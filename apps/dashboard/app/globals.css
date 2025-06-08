@@ -1,0 +1,661 @@
+/**
+ * Global styles for the dashboard app.
+ * Tailwind CSS is used for utility classes and base styles.
+ * Custom variables and overrides are defined below.
+ *
+ * This file should only contain minimal global CSS.
+ * For most styling, use Tailwind utility classes in your components.
+ *
+ * If you need to add custom CSS, prefer using @layer utilities, components, or base.
+ */
+
+/* Import Tailwind's base, components, and utilities layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Define CSS variables for Tailwind classes */
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 262 83% 58%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 262 80% 68%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62% 52%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 262 80% 68%;
+  }
+}
+
+/* ========================================
+   WebduhVercel Premium Global Styles
+   Enterprise-grade CSS with advanced features
+   ======================================== */
+
+/* CSS Custom Properties for WebduhVercel Theme */
+:root {
+  /* Brand Colors - Primary Purple Palette */
+  --webduh-primary-50: #faf5ff;
+  --webduh-primary-100: #f3e8ff;
+  --webduh-primary-200: #e9d5ff;
+  --webduh-primary-300: #d8b4fe;
+  --webduh-primary-400: #c084fc;
+  --webduh-primary-500: #a855f7;
+  --webduh-primary-600: #9333ea;
+  --webduh-primary-700: #7c3aed;
+  --webduh-primary-800: #6b21a8;
+  --webduh-primary-900: #581c87;
+  --webduh-primary-950: #3b0764;
+
+  /* Background Colors */
+  --webduh-bg-primary: #ffffff;
+  --webduh-bg-secondary: #fafafa;
+  --webduh-bg-tertiary: #f5f5f5;
+  --webduh-bg-elevated: #ffffff;
+
+  /* Text Colors */
+  --webduh-text-primary: #171717;
+  --webduh-text-secondary: #525252;
+  --webduh-text-tertiary: #737373;
+  --webduh-text-inverse: #ffffff;
+
+  /* Border Colors */
+  --webduh-border-primary: #e5e5e5;
+  --webduh-border-secondary: #d4d4d4;
+  --webduh-border-focus: var(--webduh-primary-600);
+
+  /* Shadow System */
+  --webduh-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --webduh-shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --webduh-shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --webduh-shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --webduh-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* Gradient System */
+  --webduh-gradient-primary: linear-gradient(
+    135deg,
+    var(--webduh-primary-600) 0%,
+    var(--webduh-primary-700) 100%
+  );
+  --webduh-gradient-secondary: linear-gradient(
+    135deg,
+    #3b82f6 0%,
+    #2563eb 100%
+  );
+  --webduh-gradient-rainbow: linear-gradient(
+    135deg,
+    var(--webduh-primary-500) 0%,
+    #3b82f6 25%,
+    #06b6d4 50%,
+    #10b981 75%,
+    #f59e0b 100%
+  );
+
+  /* Animation Durations */
+  --webduh-duration-fast: 150ms;
+  --webduh-duration-normal: 200ms;
+  --webduh-duration-slow: 300ms;
+
+  /* Border Radius */
+  --webduh-radius-sm: 0.375rem;
+  --webduh-radius-md: 0.5rem;
+  --webduh-radius-lg: 0.75rem;
+  --webduh-radius-xl: 1rem;
+}
+
+/* Dark Theme Variables */
+.dark {
+  --webduh-bg-primary: #0a0a0a;
+  --webduh-bg-secondary: #171717;
+  --webduh-bg-tertiary: #262626;
+  --webduh-bg-elevated: #171717;
+
+  --webduh-text-primary: #fafafa;
+  --webduh-text-secondary: #a3a3a3;
+  --webduh-text-tertiary: #737373;
+  --webduh-text-inverse: #171717;
+
+  --webduh-border-primary: #262626;
+  --webduh-border-secondary: #404040;
+  --webduh-border-focus: var(--webduh-primary-500);
+
+  --webduh-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --webduh-shadow-md:
+    0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --webduh-shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --webduh-shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6);
+  --webduh-shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
+}
+
+/* ========================================
+   Base Styles & Typography
+   ======================================== */
+
+html {
+  scroll-behavior: smooth;
+  font-feature-settings:
+    'rlig' 1,
+    'calt' 1,
+    'ss01' 1,
+    'ss02' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--webduh-bg-primary);
+  color: var(--webduh-text-primary);
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  font-variation-settings: 'wght' 400;
+  line-height: 1.6;
+  letter-spacing: -0.011em;
+  transition:
+    background-color var(--webduh-duration-normal) ease,
+    color var(--webduh-duration-normal) ease;
+}
+
+/* ========================================
+   Premium Scrollbar Styling
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--webduh-bg-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--webduh-primary-400),
+    var(--webduh-primary-600)
+  );
+  border-radius: 4px;
+  transition: background var(--webduh-duration-fast) ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--webduh-primary-500),
+    var(--webduh-primary-700)
+  );
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--webduh-bg-secondary);
+}
+
+/* ========================================
+   Focus & Interaction States
+   ======================================== */
+
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--webduh-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--webduh-radius-sm);
+}
+
+/* ========================================
+   Premium Button System
+   ======================================== */
+
+@layer components {
+  .webduh-btn {
+    @apply inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+  }
+
+  .webduh-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left var(--webduh-duration-slow) ease;
+  }
+
+  .webduh-btn:hover::before {
+    left: 100%;
+  }
+
+  .webduh-btn-primary {
+    @apply bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg hover:shadow-xl;
+    background-image: var(--webduh-gradient-primary);
+    transform: translateY(0);
+    transition: all var(--webduh-duration-normal) cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .webduh-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--webduh-shadow-xl);
+  }
+
+  .webduh-btn-primary:active {
+    transform: translateY(0);
+    transition-duration: 75ms;
+  }
+
+  .webduh-btn-gradient {
+    @apply text-white shadow-lg hover:shadow-xl;
+    background: var(--webduh-gradient-rainbow);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  .webduh-btn-ghost {
+    @apply bg-transparent text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800;
+    transition: all var(--webduh-duration-fast) ease;
+  }
+
+  .webduh-btn-outline {
+    @apply border-2 border-gray-300 bg-transparent text-gray-900 hover:bg-gray-50 dark:border-gray-700 dark:text-gray-100 dark:hover:bg-gray-800;
+    transition: all var(--webduh-duration-fast) ease;
+  }
+}
+
+/* ========================================
+   Premium Input System
+   ======================================== */
+
+@layer components {
+  .webduh-input {
+    @apply flex w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-500 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-purple-400;
+    transition: all var(--webduh-duration-fast) ease;
+    background-color: var(--webduh-bg-primary);
+    border-color: var(--webduh-border-primary);
+  }
+
+  .webduh-input:focus {
+    border-color: var(--webduh-border-focus);
+    box-shadow: 0 0 0 3px rgb(168 85 247 / 0.1);
+  }
+
+  .webduh-textarea {
+    @apply webduh-input min-h-[80px] resize-none;
+  }
+}
+
+/* ========================================
+   Premium Card System
+   ======================================== */
+
+@layer components {
+  .webduh-card {
+    @apply rounded-xl border shadow-sm;
+    background-color: var(--webduh-bg-elevated);
+    border-color: var(--webduh-border-primary);
+    color: var(--webduh-text-primary);
+    box-shadow: var(--webduh-shadow-sm);
+    transition: all var(--webduh-duration-normal) ease;
+  }
+
+  .webduh-card:hover {
+    box-shadow: var(--webduh-shadow-md);
+    transform: translateY(-1px);
+  }
+
+  .webduh-card-interactive {
+    @apply webduh-card cursor-pointer hover:shadow-lg;
+  }
+
+  .webduh-card-interactive:hover {
+    box-shadow: var(--webduh-shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .webduh-card-header {
+    @apply flex flex-col space-y-1.5 p-6;
+  }
+
+  .webduh-card-content {
+    @apply p-6 pt-0;
+  }
+
+  .webduh-card-footer {
+    @apply flex items-center p-6 pt-0;
+  }
+}
+
+/* ========================================
+   Status Indicators & Badges
+   ======================================== */
+
+@layer components {
+  .webduh-status {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .webduh-status-success {
+    @apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400;
+  }
+
+  .webduh-status-warning {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400;
+  }
+
+  .webduh-status-error {
+    @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400;
+  }
+
+  .webduh-status-info {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400;
+  }
+
+  .webduh-status-building {
+    @apply bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* ========================================
+   Premium Navigation
+   ======================================== */
+
+@layer components {
+  .webduh-nav-link {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100;
+    position: relative;
+  }
+
+  .webduh-nav-link.active {
+    @apply bg-purple-100 text-purple-900 dark:bg-purple-900/30 dark:text-purple-400;
+  }
+
+  .webduh-nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    background: var(--webduh-gradient-primary);
+    border-radius: 0 2px 2px 0;
+  }
+}
+
+/* ========================================
+   Loading & Animation System
+   ======================================== */
+
+@layer components {
+  .webduh-spinner {
+    @apply inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent motion-reduce:animate-[spin_1.5s_linear_infinite];
+  }
+
+  .webduh-skeleton {
+    @apply animate-pulse rounded-md bg-gray-200 dark:bg-gray-800;
+  }
+
+  .webduh-shimmer {
+    background: linear-gradient(
+      110deg,
+      var(--webduh-bg-secondary) 8%,
+      var(--webduh-bg-primary) 18%,
+      var(--webduh-bg-secondary) 33%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+}
+
+/* ========================================
+   Premium Animations
+   ======================================== */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.4s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gradient-text {
+    background: var(--webduh-gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: var(--webduh-bg-primary);
+    border-radius: var(--webduh-radius-lg);
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: var(--webduh-gradient-primary);
+    border-radius: inherit;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .glass {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .webduh-card {
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+}
+
+/* ========================================
+   Reduced Motion
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   High Contrast Mode
+   ======================================== */
+
+@media (prefers-contrast: high) {
+  :root {
+    --webduh-border-primary: #000000;
+    --webduh-border-secondary: #000000;
+  }
+
+  .dark {
+    --webduh-border-primary: #ffffff;
+    --webduh-border-secondary: #ffffff;
+  }
+}

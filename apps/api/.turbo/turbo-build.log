@@ -1,0 +1,241 @@
+
+> @webduh/api@1.0.0 build
+> tsc
+
+../../../../../components/workflow/Mermaid.tsx(40,21): error TS1109: Expression expected.
+../../../../../components/workflow/Mermaid.tsx(41,13): error TS1005: '}' expected.
+../../../../../components/workflow/Mermaid.tsx(41,97): error TS1382: Unexpected token. Did you mean `{'>'}` or `&gt;`?
+../../../../../components/workflow/Mermaid.tsx(42,30): error TS1145: '{' or JSX element expected.
+../../../../../components/workflow/Mermaid.tsx(42,72): error TS1382: Unexpected token. Did you mean `{'>'}` or `&gt;`?
+../../../../../components/workflow/Mermaid.tsx(44,9): error TS1005: ';' expected.
+../../../../../components/workflow/Mermaid.tsx(50,5): error TS1128: Declaration or statement expected.
+../../../../../components/workflow/Mermaid.tsx(51,3): error TS1109: Expression expected.
+../../../../../components/workflow/Mermaid.tsx(52,1): error TS1128: Declaration or statement expected.
+../../../../../components/workflow/Mermaid.tsx(54,6): error TS1005: ';' expected.
+../../../../../components/workflow/Mermaid.tsx(54,10): error TS1434: Unexpected keyword or identifier.
+../../../../../components/workflow/Mermaid.tsx(54,34): error TS1005: ',' expected.
+../../../../../components/workflow/Mermaid.tsx(54,38): error TS1005: ',' expected.
+../../../../../components/workflow/Mermaid.tsx(54,59): error TS1005: ',' expected.
+../../../../../components/workflow/Mermaid.tsx(54,63): error TS1005: ',' expected.
+../../../../../components/workflow/Mermaid.tsx(54,82): error TS1005: ',' expected.
+../../../../../components/workflow/Mermaid.tsx(55,4): error TS1005: ';' expected.
+../../../../../components/workflow/Mermaid.tsx(55,8): error TS1434: Unexpected keyword or identifier.
+../../../../../components/workflow/Mermaid.tsx(55,17): error TS1434: Unexpected keyword or identifier.
+../../../../../components/workflow/Mermaid.tsx(55,34): error TS1005: '(' expected.
+../../../../../components/workflow/Mermaid.tsx(55,38): error TS1005: ';' expected.
+../../../../../components/workflow/Mermaid.tsx(55,41): error TS1005: ';' expected.
+../../../../../components/workflow/Mermaid.tsx(55,61): error TS1002: Unterminated string literal.
+../../../../../components/workflow/Mermaid.tsx(57,1): error TS1005: ')' expected.
+../../../../../components/workflow/Mermaid.tsx(57,6): error TS1434: Unexpected keyword or identifier.
+../../../../../components/workflow/Mermaid.tsx(57,25): error TS1005: ';' expected.
+../../../../../components/workflow/Mermaid.tsx(57,96): error TS1002: Unterminated string literal.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(485,57): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(485,69): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(485,77): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(494,32): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(494,38): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(494,48): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(494,59): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(535,51): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(535,64): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(563,63): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(563,76): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(590,24): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(590,37): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(593,22): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(593,27): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(594,25): error TS1005: '>' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(594,30): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(594,47): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(594,59): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(595,27): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(595,32): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(595,66): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(595,76): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(595,87): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(595,103): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(596,18): error TS1161: Unterminated regular expression literal.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(597,22): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(597,27): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(598,26): error TS1005: '>' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(598,36): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(598,46): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(598,48): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(598,71): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(599,26): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(599,36): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(599,56): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(599,58): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(599,132): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(600,26): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(600,36): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(600,52): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(600,54): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(600,85): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(601,18): error TS1161: Unterminated regular expression literal.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(602,22): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(602,27): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(602,49): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(602,59): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(602,75): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(602,108): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(603,22): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(603,32): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(604,22): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(605,18): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(606,22): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(606,27): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(607,26): error TS1005: '>' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(607,31): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(608,36): error TS1161: Unterminated regular expression literal.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(609,33): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(609,38): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(609,54): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(609,65): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(609,79): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(609,93): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(609,115): error TS1161: Unterminated regular expression literal.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(610,22): error TS1161: Unterminated regular expression literal.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(611,26): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(611,31): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(611,46): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(611,56): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(612,26): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(613,22): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(614,18): error TS1161: Unterminated regular expression literal.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(615,22): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(615,27): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(615,45): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(615,55): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(616,22): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(617,18): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(646,41): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(646,56): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(653,39): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(653,44): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(659,46): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(659,55): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(665,42): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(665,50): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(682,59): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(682,64): error TS1005: '{' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(682,81): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(682,91): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(682,105): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(682,136): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(684,19): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(687,13): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(712,9): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(770,8): error TS1110: Type expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(771,6): error TS1161: Unterminated regular expression literal.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(772,6): error TS1161: Unterminated regular expression literal.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(782,22): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(782,26): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(782,34): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(782,43): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(782,53): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(782,61): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(784,7): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(784,8): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(785,5): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(785,6): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(786,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(791,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(791,10): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(791,28): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(792,9): error TS1003: Identifier expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(792,12): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(792,40): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(792,42): error TS1136: Property assignment expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(803,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(808,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(808,10): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(808,33): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(808,47): error TS1109: Expression expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(809,11): error TS1005: ':' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(809,43): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(811,9): error TS1003: Identifier expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(811,16): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(811,74): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(811,76): error TS1136: Property assignment expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(822,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(827,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(827,10): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(827,36): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(827,45): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(827,59): error TS1109: Expression expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(829,11): error TS1005: ':' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(829,63): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(830,25): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(830,107): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(973,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(978,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(978,10): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(978,35): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(978,44): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(978,58): error TS1109: Expression expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(979,11): error TS1005: ':' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(979,61): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(981,9): error TS1003: Identifier expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(986,5): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(986,12): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(986,48): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(988,9): error TS1005: ':' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(990,20): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(990,40): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(993,20): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(993,44): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(996,13): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(996,17): error TS1005: ':' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1008,9): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1011,20): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1011,39): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1013,7): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1027,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1027,10): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1027,38): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1027,47): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1027,61): error TS1109: Expression expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1028,9): error TS1005: ':' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1029,13): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1029,17): error TS1005: ':' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1029,38): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1030,13): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1030,17): error TS1005: ':' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1030,39): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1031,7): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1040,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1040,10): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1040,32): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1040,46): error TS1109: Expression expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1041,11): error TS1005: ':' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1043,7): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1045,11): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1045,18): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1045,32): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1046,12): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1046,39): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1052,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1052,10): error TS1434: Unexpected keyword or identifier.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1052,26): error TS1005: ';' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1052,40): error TS1109: Expression expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1053,12): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1053,57): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1055,13): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1055,21): error TS1005: ',' expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1055,23): error TS1136: Property assignment expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1058,7): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1072,3): error TS1128: Declaration or statement expected.
+../../../../../Projects/AIProjects/cursorrules/mcp-unified-launcher.ts(1073,1): error TS1128: Declaration or statement expected.
+../../../../../Projects/Tools/ToolChest/Dawn_Of_Anarchy/dawn-of-anarchy-app/src/components/product-description-generator.tsx(82,6): error TS17008: JSX element 'div' has no corresponding closing tag.
+../../../../../Projects/Tools/ToolChest/Dawn_Of_Anarchy/dawn-of-anarchy-app/src/components/product-description-generator.tsx(192,10): error TS17008: JSX element 'div' has no corresponding closing tag.
+../../../../../Projects/Tools/ToolChest/Dawn_Of_Anarchy/dawn-of-anarchy-app/src/components/product-description-generator.tsx(193,12): error TS17008: JSX element 'div' has no corresponding closing tag.
+../../../../../Projects/Tools/ToolChest/Dawn_Of_Anarchy/dawn-of-anarchy-app/src/components/product-description-generator.tsx(209,14): error TS17008: JSX element 'div' has no corresponding closing tag.
+../../../../../Projects/Tools/ToolChest/Dawn_Of_Anarchy/dawn-of-anarchy-app/src/components/product-description-generator.tsx(211,1): error TS1005: '</' expected.
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path C:\Users\recon\WebduhVercel\apps\api
+npm error workspace @webduh/api@1.0.0
+npm error location C:\Users\recon\WebduhVercel\apps\api
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c tsc

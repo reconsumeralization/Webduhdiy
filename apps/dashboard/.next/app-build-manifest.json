@@ -1,0 +1,113 @@
+{
+  "pages": {
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/error": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/error.js"
+    ],
+    "/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/loading.js"
+    ],
+    "/not-found": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/not-found.js"
+    ],
+    "/projects/new/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/projects/new/page.js"
+    ],
+    "/ai-builder/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/ai-builder/page.js"
+    ],
+    "/analytics/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/analytics/page.js"
+    ],
+    "/status/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/status/page.js"
+    ],
+    "/deployments/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/deployments/page.js"
+    ],
+    "/projects/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/projects/page.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+    ],
+    "/docs/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/docs/page.js"
+    ],
+    "/docs/getting-started-with-webduh/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/docs/getting-started-with-webduh/page.js"
+    ],
+    "/docs/frameworks/nextjs/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/docs/frameworks/nextjs/page.js"
+    ],
+    "/docs/frameworks/sveltekit/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/docs/frameworks/sveltekit/page.js"
+    ],
+    "/guides/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/guides/page.js"
+    ],
+    "/docs/cli/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/vendor.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/docs/cli/page.js"
+    ]
+  }
+}

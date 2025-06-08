@@ -1,0 +1,4 @@
+
+> @webduh/shared-ui@1.0.0 build
+> tsc && copyfiles 'src/**/*.css' dist/
+

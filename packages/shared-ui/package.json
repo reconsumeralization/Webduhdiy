@@ -1,0 +1,37 @@
+{
+  "name": "@webduh/shared-ui",
+  "version": "1.0.0",
+  "description": "Shared UI components for WebduhVercel platform",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && copyfiles 'src/**/*.css' dist/",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.20.7",
+    "@types/dom-speech-recognition": "^0.0.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/readdir-glob": "^1.1.5",
+    "copyfiles": "^2.4.1",
+    "typescript": "^5.3.3"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.445.0"
+  }
+}

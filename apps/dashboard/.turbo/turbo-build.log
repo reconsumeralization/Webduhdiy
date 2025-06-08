@@ -1,0 +1,20 @@
+
+> @webduh/dashboard@1.0.0 build
+> next build
+
+  ▲ Next.js 14.2.29
+  - Environments: .env.local
+  - Experiments (use with caution):
+    · turbo
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/124) ...
+   Generating static pages (31/124) 
+   Generating static pages (62/124) 
+   Generating static pages (93/124) 
+ ✓ Generating static pages (124/124)
+   Finalizing page optimization ...
+   Collecting build traces ...

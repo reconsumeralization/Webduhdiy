@@ -1,0 +1,237 @@
+version: '3.8'
+
+# WebduhVercel Platform - Complete Docker Compose Setup
+# The Ultimate v0.dev Competitor with Bolt.DIY Integration
+
+networks:
+  webduh-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  bolt-projects:
+    driver: local
+  api-logs:
+    driver: local
+  dashboard-logs:
+    driver: local
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: webduh-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: webduh
+      POSTGRES_USER: webduh
+      POSTGRES_PASSWORD: webduh_password_2024
+      POSTGRES_INITDB_ARGS: '--auth-host=scram-sha-256'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./db/setup.sql:/docker-entrypoint-initdb.d/02-setup.sql:ro
+    ports:
+      - '5432:5432'
+    networks:
+      - webduh-network
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U webduh -d webduh']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: webduh-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data:/data
+    ports:
+      - '6379:6379'
+    networks:
+      - webduh-network
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # WebduhVercel API Service
+  api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    container_name: webduh-api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      # Database Configuration
+      DATABASE_URL: postgresql://webduh:webduh_password_2024@postgres:5432/webduh
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: webduh
+      DB_USER: webduh
+      DB_PASSWORD: webduh_password_2024
+      # Redis Configuration
+      REDIS_URL: redis://redis:6379
+      # Security
+      JWT_SECRET: webduh_jwt_secret_key_production_2024
+      CORS_ORIGIN: http://localhost:3000,http://dashboard:3000
+      # Features
+      ENABLE_METRICS: 'true'
+      ENABLE_WEBSOCKETS: 'true'
+      LOG_LEVEL: info
+    volumes:
+      - api-logs:/app/logs
+      - /var/run/docker.sock:/var/run/docker.sock # For Docker integration
+    ports:
+      - '3001:3001'
+    networks:
+      - webduh-network
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3001/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # WebduhVercel Dashboard (Next.js)
+  dashboard:
+    build:
+      context: .
+      dockerfile: ./apps/dashboard/Dockerfile
+    container_name: webduh-dashboard
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: '0.0.0.0'
+      # API Configuration
+      NEXT_PUBLIC_API_URL: http://api:3001
+      NEXT_PUBLIC_BOLT_DIY_URL: http://bolt-diy:5173
+      # Internal API URL for server-side requests
+      API_URL: http://api:3001
+      # Feature Flags
+      NEXT_PUBLIC_ENABLE_ANALYTICS: 'true'
+      NEXT_PUBLIC_ENABLE_AI_BUILDER: 'true'
+      NEXT_TELEMETRY_DISABLED: 1
+    volumes:
+      - dashboard-logs:/app/logs
+    ports:
+      - '3000:3000'
+    networks:
+      - webduh-network
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000/api/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Bolt.DIY AI Builder
+  bolt-diy:
+    build:
+      context: .
+      dockerfile: ./apps/bolt-diy/Dockerfile
+    container_name: webduh-bolt-diy
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 5173
+      VITE_LOG_LEVEL: info
+      RUNNING_IN_DOCKER: 'true'
+      # AI Provider API Keys (set these in .env file)
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GOOGLE_GENERATIVE_AI_API_KEY: ${GOOGLE_GENERATIVE_AI_API_KEY:-}
+      OLLAMA_API_BASE_URL: ${OLLAMA_API_BASE_URL:-http://localhost:11434}
+      PERPLEXITY_API_KEY: ${PERPLEXITY_API_KEY:-}
+      # WebduhVercel Integration
+      WEBDUH_API_URL: http://api:3001
+      WEBDUH_DASHBOARD_URL: http://dashboard:3000
+    volumes:
+      - bolt-projects:/app/projects
+      - /var/run/docker.sock:/var/run/docker.sock # For container management
+    ports:
+      - '5173:5173'
+    networks:
+      - webduh-network
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:5173']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Nginx Reverse Proxy (Optional - for production)
+  nginx:
+    image: nginx:alpine
+    container_name: webduh-nginx
+    restart: unless-stopped
+    depends_on:
+      - dashboard
+      - api
+      - bolt-diy
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - webduh-network
+    profiles:
+      - production # Only start with --profile production
+
+  # Monitoring & Observability
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: webduh-prometheus
+    restart: unless-stopped
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - '9090:9090'
+    networks:
+      - webduh-network
+    profiles:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: webduh-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: webduh_admin_2024
+    volumes:
+      - ./monitoring/grafana:/var/lib/grafana
+    ports:
+      - '3001:3000'
+    networks:
+      - webduh-network
+    profiles:
+      - monitoring
+
+# Health Check Script for the entire platform
+x-healthcheck: &healthcheck
+  test: ['CMD', 'curl', '-f', 'http://localhost/health']
+  interval: 30s
+  timeout: 10s
+  retries: 3
+  start_period: 60s
