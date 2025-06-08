@@ -124,7 +124,8 @@ const projectTemplates: ProjectTemplate[] = [
     name: 'Landing Page',
     description: 'Modern responsive landing page with hero, features, and CTA',
     icon: '🚀',
-    prompt: 'Create a modern, responsive landing page with a hero section, features grid, testimonials, and contact form. Use Tailwind CSS for styling.',
+    prompt:
+      'Create a modern, responsive landing page with a hero section, features grid, testimonials, and contact form. Use Tailwind CSS for styling.',
     tags: ['React', 'Tailwind', 'Responsive'],
   },
   {
@@ -132,7 +133,8 @@ const projectTemplates: ProjectTemplate[] = [
     name: 'Admin Dashboard',
     description: 'Full-featured admin dashboard with charts and tables',
     icon: '📊',
-    prompt: 'Build a comprehensive admin dashboard with sidebar navigation, data visualization charts, tables, and user management. Include dark mode support.',
+    prompt:
+      'Build a comprehensive admin dashboard with sidebar navigation, data visualization charts, tables, and user management. Include dark mode support.',
     tags: ['React', 'Charts', 'Admin'],
   },
   {
@@ -140,7 +142,8 @@ const projectTemplates: ProjectTemplate[] = [
     name: 'E-commerce Store',
     description: 'Complete online store with cart and checkout',
     icon: '🛒',
-    prompt: 'Create a full e-commerce application with product catalog, shopping cart, user authentication, and checkout process.',
+    prompt:
+      'Create a full e-commerce application with product catalog, shopping cart, user authentication, and checkout process.',
     tags: ['React', 'E-commerce', 'Auth'],
   },
   {
@@ -148,7 +151,8 @@ const projectTemplates: ProjectTemplate[] = [
     name: 'Blog Platform',
     description: 'Content management system with markdown support',
     icon: '📝',
-    prompt: 'Build a blog platform with markdown editor, syntax highlighting, categories, tags, and search functionality.',
+    prompt:
+      'Build a blog platform with markdown editor, syntax highlighting, categories, tags, and search functionality.',
     tags: ['React', 'Markdown', 'CMS'],
   },
 ];
@@ -218,7 +222,10 @@ export default function AIBuilderPage() {
   useEffect(() => {
     if (autoSave && projectFiles.length > 0) {
       const saveTimer = setTimeout(() => {
-        localStorage.setItem('ai-builder-project', JSON.stringify(projectFiles));
+        localStorage.setItem(
+          'ai-builder-project',
+          JSON.stringify(projectFiles),
+        );
       }, 2000);
       return () => clearTimeout(saveTimer);
     }
@@ -245,9 +252,11 @@ export default function AIBuilderPage() {
     const lines = code.split('\n').length;
     const complexity = Math.min(Math.floor(lines / 10), 10);
     const suggestions = [];
-    
+
     if (code.includes('console.log')) {
-      suggestions.push('Consider removing console.log statements for production');
+      suggestions.push(
+        'Consider removing console.log statements for production',
+      );
     }
     if (code.includes('var ')) {
       suggestions.push('Consider using const/let instead of var');
@@ -255,9 +264,9 @@ export default function AIBuilderPage() {
     if (lines > 100) {
       suggestions.push('Consider breaking this file into smaller components');
     }
-    
+
     const performance = Math.max(10 - complexity, 1);
-    
+
     setCodeAnalysis({ complexity, suggestions, performance });
   }, []);
 
@@ -330,7 +339,11 @@ export default function AIBuilderPage() {
           model: selectedModel,
           provider: selectedProvider,
           executionTime,
-          tokens: response.files?.reduce((acc, file) => acc + file.content.length, 0) || 0,
+          tokens:
+            response.files?.reduce(
+              (acc, file) => acc + file.content.length,
+              0,
+            ) || 0,
         },
       };
 
@@ -375,7 +388,9 @@ export default function AIBuilderPage() {
       const systemMessage: Message = {
         id: Date.now().toString(),
         type: 'system',
-        content: `📎 **Files Uploaded:** ${Array.from(files).map(f => f.name).join(', ')}`,
+        content: `📎 **Files Uploaded:** ${Array.from(files)
+          .map((f) => f.name)
+          .join(', ')}`,
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, systemMessage]);
@@ -389,15 +404,20 @@ export default function AIBuilderPage() {
       const systemMessage: Message = {
         id: Date.now().toString(),
         type: 'system',
-        content: '🎤 **Voice recording started...** Speak your project requirements.',
+        content:
+          '🎤 **Voice recording started...** Speak your project requirements.',
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, systemMessage]);
     }
   };
 
-  const generatePreview = (files: Array<{ name: string; content: string; language: string }>) => {
-    const htmlFile = files.find(f => f.name.endsWith('.html') || f.name === 'index.html');
+  const generatePreview = (
+    files: Array<{ name: string; content: string; language: string }>,
+  ) => {
+    const htmlFile = files.find(
+      (f) => f.name.endsWith('.html') || f.name === 'index.html',
+    );
     if (htmlFile && previewRef.current) {
       const blob = new Blob([htmlFile.content], { type: 'text/html' });
       const url = URL.createObjectURL(blob);
@@ -420,7 +440,7 @@ export default function AIBuilderPage() {
 
   const downloadProject = () => {
     if (projectFiles.length === 0) return;
-    
+
     // Create a zip-like structure (simplified)
     const projectData = {
       files: projectFiles,
@@ -429,8 +449,10 @@ export default function AIBuilderPage() {
         generator: 'AI Builder Enhanced',
       },
     };
-    
-    const blob = new Blob([JSON.stringify(projectData, null, 2)], { type: 'application/json' });
+
+    const blob = new Blob([JSON.stringify(projectData, null, 2)], {
+      type: 'application/json',
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -475,7 +497,11 @@ export default function AIBuilderPage() {
                 : 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300'
             }`}
           >
-            {autoSave ? <CheckIcon className="h-4 w-4 mr-2" /> : <XMarkIcon className="h-4 w-4 mr-2" />}
+            {autoSave ? (
+              <CheckIcon className="h-4 w-4 mr-2" />
+            ) : (
+              <XMarkIcon className="h-4 w-4 mr-2" />
+            )}
             Auto-save
           </button>
           <button
@@ -508,7 +534,8 @@ export default function AIBuilderPage() {
                   🚀 Bolt.DIY Integration
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mt-1">
-                  Launch the full Bolt.DIY experience with advanced WebContainer features and live collaboration
+                  Launch the full Bolt.DIY experience with advanced WebContainer
+                  features and live collaboration
                 </p>
               </div>
             </div>
@@ -731,8 +758,10 @@ export default function AIBuilderPage() {
                     )}
                     {message.metadata && (
                       <div className="mt-2 text-xs opacity-70">
-                        {message.metadata.model} • {message.metadata.executionTime}ms
-                        {message.metadata.tokens && ` • ${message.metadata.tokens} chars`}
+                        {message.metadata.model} •{' '}
+                        {message.metadata.executionTime}ms
+                        {message.metadata.tokens &&
+                          ` • ${message.metadata.tokens} chars`}
                       </div>
                     )}
                   </div>
@@ -815,11 +844,13 @@ export default function AIBuilderPage() {
                       <button
                         onClick={toggleRecording}
                         className={`p-2 transition-colors rounded-lg ${
-                          isRecording 
-                            ? 'text-red-500 bg-red-50 dark:bg-red-900/20' 
+                          isRecording
+                            ? 'text-red-500 bg-red-50 dark:bg-red-900/20'
                             : 'text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20'
                         }`}
-                        title={isRecording ? 'Stop recording' : 'Start voice input'}
+                        title={
+                          isRecording ? 'Stop recording' : 'Start voice input'
+                        }
                       >
                         {isRecording ? (
                           <StopIcon className="h-5 w-5" />
@@ -854,10 +885,15 @@ export default function AIBuilderPage() {
                 </span>
                 {codeAnalysis && (
                   <div className="flex items-center space-x-2">
-                    <div className={`w-2 h-2 rounded-full ${
-                      codeAnalysis.performance > 7 ? 'bg-green-500' : 
-                      codeAnalysis.performance > 4 ? 'bg-yellow-500' : 'bg-red-500'
-                    }`} />
+                    <div
+                      className={`w-2 h-2 rounded-full ${
+                        codeAnalysis.performance > 7
+                          ? 'bg-green-500'
+                          : codeAnalysis.performance > 4
+                            ? 'bg-yellow-500'
+                            : 'bg-red-500'
+                      }`}
+                    />
                     <span className="text-xs text-gray-500">
                       Performance: {codeAnalysis.performance}/10
                     </span>
@@ -868,7 +904,12 @@ export default function AIBuilderPage() {
                 {projectFiles.length > 0 && (
                   <>
                     <button
-                      onClick={() => copyToClipboard(projectFiles.find(f => f.name === activeFile)?.content || '')}
+                      onClick={() =>
+                        copyToClipboard(
+                          projectFiles.find((f) => f.name === activeFile)
+                            ?.content || '',
+                        )
+                      }
                       className="p-2 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20"
                       title="Copy code"
                     >
@@ -904,10 +945,15 @@ export default function AIBuilderPage() {
                   >
                     <div className="flex items-center space-x-2">
                       <span>
-                        {file.language === 'javascript' ? '🟨' :
-                         file.language === 'typescript' ? '🔷' :
-                         file.language === 'html' ? '🟧' :
-                         file.language === 'css' ? '🟦' : '📄'}
+                        {file.language === 'javascript'
+                          ? '🟨'
+                          : file.language === 'typescript'
+                            ? '🔷'
+                            : file.language === 'html'
+                              ? '🟧'
+                              : file.language === 'css'
+                                ? '🟦'
+                                : '📄'}
                       </span>
                       <span>{file.name}</span>
                     </div>
@@ -929,11 +975,16 @@ export default function AIBuilderPage() {
                 </div>
                 {codeAnalysis.suggestions.length > 0 && (
                   <div className="space-y-1">
-                    {codeAnalysis.suggestions.slice(0, 2).map((suggestion, idx) => (
-                      <p key={idx} className="text-xs text-blue-700 dark:text-blue-300">
-                        💡 {suggestion}
-                      </p>
-                    ))}
+                    {codeAnalysis.suggestions
+                      .slice(0, 2)
+                      .map((suggestion, idx) => (
+                        <p
+                          key={idx}
+                          className="text-xs text-blue-700 dark:text-blue-300"
+                        >
+                          💡 {suggestion}
+                        </p>
+                      ))}
                   </div>
                 )}
               </div>
@@ -953,7 +1004,9 @@ export default function AIBuilderPage() {
                 <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-400">
                   <div className="text-center">
                     <CodeBracketIcon className="h-12 w-12 mx-auto mb-4 text-gray-300 dark:text-gray-600" />
-                    <p className="text-lg font-medium mb-2">No Code Generated Yet</p>
+                    <p className="text-lg font-medium mb-2">
+                      No Code Generated Yet
+                    </p>
                     <p className="text-sm">
                       Start a conversation or choose a template to generate code
                     </p>

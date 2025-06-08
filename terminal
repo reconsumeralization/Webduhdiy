@@ -1,0 +1,1 @@
+npm install -D @types/knex @types/swagger-jsdoc @types/swagger-ui-express @types/redis 
